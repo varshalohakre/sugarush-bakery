@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sugarush.co - Fresh Baked Goods</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo" onclick="showPage('home')">Sugarush</div>
+        <ul class="nav-links">
+            <li><a onclick="showPage('home')">Home</a></li>
+            <li><a onclick="showPage('products')">Products</a></li>
+            <li><a onclick="showPage('myorders')">My Orders</a></li>
+            <li><a onclick="showAboutModal()">About Us</a></li>
+            <li><a onclick="showContactModal()">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="main-content">
+        <div id="home-page" class="page">
+            <header class="hero">
+                <h1>Welcome to Sugarush.co</h1>
+                <p>Freshly baked happiness, delivered to your door.</p>
+                <button class="customize-btn" onclick="showPage('customorder')">
+                    🎂 Customize Your Cake
+                </button>
+            </header>
+
+            <section class="products-section">
+                <h2>Our Bestsellers</h2>
+                <div class="products-grid" id="home-products-grid">
+                    </div>
+            </section>
+        </div>
+
+        <div id="products-page" class="page hidden">
+            <section class="products-section" style="padding-top: 50px;">
+                <h2>All Our Products</h2>
+                <div class="products-grid" id="all-products-grid">
+                    </div>
+            </section>
+        </div>
+
+        <div id="customorder-page" class="page hidden">
+            <section class="products-section" style="padding-top: 50px;">
+                <h2>Customize Your Cake</h2>
+                <form class="custom-form" id="custom-order-form">
+                    <div class="form-group">
+                        <label>Cake Type</label>
+                        <select id="cake-type" required>
+                            <option value="">Select cake type</option>
+                            <option value="chocolate">Chocolate Cake</option>
+                            <option value="vanilla">Vanilla Cake</option>
+                            <option value="red-velvet">Red Velvet Cake</option>
+                            <option value="strawberry">Strawberry Cake</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Size</label>
+                        <select id="cake-size" required>
+                            <option value="">Select size</option>
+                            <option value="small">Small (1 lb) - ₹400</option>
+                            <option value="medium">Medium (2 lb) - ₹700</option>
+                            <option value="large">Large (3 lb) - ₹1000</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Frosting</label>
+                        <select id="frosting" required>
+                            <option value="">Select frosting</option>
+                            <option value="buttercream">Buttercream</option>
+                            <option value="cream-cheese">Cream Cheese</option>
+                            <option value="whipped-cream">Whipped Cream</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Message on Cake (Optional)</label>
+                        <input type="text" id="cake-message" placeholder="Happy Birthday!">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Special Instructions (Optional)</label>
+                        <textarea id="special-instructions" rows="3" placeholder="Any special requirements..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Delivery Date</label>
+                        <input type="date" id="delivery-date" required>
+                    </div>
+
+                    <button type="submit" class="order-btn">Place Custom Order</button>
+                </form>
+            </section>
+        </div>
+
+        <div id="myorders-page" class="page hidden">
+            <section class="products-section" style="padding-top: 50px;">
+                <h2>My Orders</h2>
+                <div id="orders-summary" class="orders-summary">
+                    <div class="filter-controls">
+                        <label for="status-filter">Filter by Status:</label>
+                        <select id="status-filter" onchange="filterOrders(this.value)">
+                            <option value="all">All</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Delivered">Delivered</option>
+                        </select>
+                    </div>
+                    <p><strong>Total Orders Value:</strong> <span id="total-price">₹0</span></p>
+                </div>
+                <div id="orders-container">
+                    </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('about-modal')">&times;</span>
+            <h2>About Sugarush</h2>
+            <p><strong>Owner:</strong> Priya Sharma</p>
+            <p><strong>Experience:</strong> 15+ years in baking</p>
+            <p>Welcome to Sugarush, where every bite is a moment of pure joy! Founded by passionate baker Priya Sharma, we've been crafting delicious, fresh baked goods since 2010.</p>
+            <p>Our mission is simple: to bring happiness to your table with our handcrafted cakes, pastries, and breads made from the finest ingredients.</p>
+            <p>From traditional recipes passed down through generations to innovative modern creations, we ensure every product meets our high standards of quality and taste.</p>
+        </div>
+    </div>
+
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('contact-modal')">&times;</span>
+            <h2>Contact Us</h2>
+            <p><strong>📍 Address:</strong> 123 Baker Street, Pimpri, Pune, Maharashtra 411018</p>
+            <p><strong>📞 Phone:</strong> +91 98765 43210</p>
+            <p><strong>📧 Email:</strong> orders@sugarush.co</p>
+            <p><strong>🕒 Hours:</strong></p>
+            <p>Monday - Saturday: 7:00 AM - 8:00 PM</p>
+            <p>Sunday: 8:00 AM - 6:00 PM</p>
+            <p><strong>🚚 Delivery:</strong> Free delivery within 5km radius</p>
+        </div>
+    </div>
+
+    <div id="order-confirmation-modal" class="modal">
+        <div class="modal-content">
+            <h2>⚠️ Order Confirmation</h2>
+            <p><strong>Important:</strong> Once placed, this order cannot be cancelled or modified.</p>
+            <p>Are you sure you want to proceed with this order?</p>
+            <div style="margin-top: 20px; text-align: center;">
+                <button onclick="confirmOrder()" style="background: #d2a679; color: white; padding: 10px 20px; border: none; border-radius: 5px; margin-right: 10px; cursor: pointer;">Confirm Order</button>
+                <button onclick="closeModal('order-confirmation-modal')" style="background: #666; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('product-modal')">&times;</span>
+            <img src="" alt="Product Image" class="modal-product-image">
+            <div class="modal-product-info">
+                <h2 class="modal-product-name"></h2>
+                <p class="modal-product-description"></p>
+                <p class="modal-product-price"></p>
+                <button class="order-btn modal-order-btn">Order Now</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

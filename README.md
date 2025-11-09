@@ -51,7 +51,7 @@ The project will open in your default web browser at `http://127.0.0.2:5500`.
 ## 🔗 Links
 
 -   **GitHub Repository:** [https://github.com/varshalohakre/sugarush-bakery](https://github.com/varshalohakre/sugarush-bakery)
--   **Live Demo:** [https://varshalohakre.github.io/sugarush-bakery](https://varshalohakre.io/sugarush-bakery) (If you plan to use GitHub Pages)
+-   **Live Demo:** [https://varshalohakre.github.io/sugarush-bakery](https://varshalohakre.github.io/sugarush-bakery/) (If you plan to use GitHub Pages)
 
 ## 📜 Credits and References
 
